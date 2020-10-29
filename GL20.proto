@@ -1,15 +1,20 @@
-// Command
-// python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. GL20.proto
-
 syntax = "proto3";
 
-message Number {
-    float value = 1;
+message GPIO {
+    int32 PINx = 1;
+    int32 value = 2;
+    bool level = 3;
 }
 
-message noMessage {}
 
 service serviceGL20 {
-    rpc SquareRoot(Number) returns (Number) {}
-    rpc GL20_digitalWriteToggleAll(noMessage) returns (noMessage) {}
+    rpc digitalWriteToggle(GPIO) returns (GPIO) {}
+    rpc digitalWriteToggleAll(GPIO) returns (GPIO) {}
+    rpc digitalReadAll(GPIO) returns (GPIO) {}
+    rpc digitalRead(GPIO) returns (GPIO) {}
+    rpc digitalWrite(GPIO) returns (GPIO) {}
+    rpc digitalWriteAll(GPIO) returns (GPIO) {}
 }
+
+// Command
+// python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. *.proto

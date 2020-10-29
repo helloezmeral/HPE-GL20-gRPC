@@ -4,12 +4,25 @@ import grpc
 import GL20_pb2
 import GL20_pb2_grpc
 
-# open a gRPC channel
-channel = grpc.insecure_channel('172.16.11.48:50051')
+import logging
 
-# create a stub (client)
-stub = GL20_pb2_grpc.serviceGL20Stub(channel)
+import time
+
+# Blinking
+def run():
+    with grpc.insecure_channel('localhost:50051') as channel:
+        stub = GL20_pb2_grpc.serviceGL20Stub(channel)
+        stub.digitalWriteToggleAll(GL20_pb2.GPIO())
+        print(stub.digitalRead(GL20_pb2.GPIO(PINx = 6)).level)
+        time.sleep(1)
+        print(bin(stub.digitalReadAll(GL20_pb2.GPIO()).value))
+        stub.digitalWrite(GL20_pb2.GPIO(PINx = 6, level = True))
+        time.sleep(1)
+        print(stub.digitalRead(GL20_pb2.GPIO(PINx = 6)).level)
+        stub.digitalWriteAll(GL20_pb2.GPIO(value = 2))
+        time.sleep(1)
 
 
-# make the call
-stub.GL20_digitalWriteToggleAll(GL20_pb2.noMessage())
+if __name__ == '__main__':
+    logging.basicConfig()
+    run()

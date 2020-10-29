@@ -14,28 +14,72 @@ class serviceGL20Stub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.SquareRoot = channel.unary_unary(
-                '/serviceGL20/SquareRoot',
-                request_serializer=GL20__pb2.Number.SerializeToString,
-                response_deserializer=GL20__pb2.Number.FromString,
+        self.digitalWriteToggle = channel.unary_unary(
+                '/serviceGL20/digitalWriteToggle',
+                request_serializer=GL20__pb2.GPIO.SerializeToString,
+                response_deserializer=GL20__pb2.GPIO.FromString,
                 )
-        self.GL20_digitalWriteToggleAll = channel.unary_unary(
-                '/serviceGL20/GL20_digitalWriteToggleAll',
-                request_serializer=GL20__pb2.noMessage.SerializeToString,
-                response_deserializer=GL20__pb2.noMessage.FromString,
+        self.digitalWriteToggleAll = channel.unary_unary(
+                '/serviceGL20/digitalWriteToggleAll',
+                request_serializer=GL20__pb2.GPIO.SerializeToString,
+                response_deserializer=GL20__pb2.GPIO.FromString,
+                )
+        self.digitalReadAll = channel.unary_unary(
+                '/serviceGL20/digitalReadAll',
+                request_serializer=GL20__pb2.GPIO.SerializeToString,
+                response_deserializer=GL20__pb2.GPIO.FromString,
+                )
+        self.digitalRead = channel.unary_unary(
+                '/serviceGL20/digitalRead',
+                request_serializer=GL20__pb2.GPIO.SerializeToString,
+                response_deserializer=GL20__pb2.GPIO.FromString,
+                )
+        self.digitalWrite = channel.unary_unary(
+                '/serviceGL20/digitalWrite',
+                request_serializer=GL20__pb2.GPIO.SerializeToString,
+                response_deserializer=GL20__pb2.GPIO.FromString,
+                )
+        self.digitalWriteAll = channel.unary_unary(
+                '/serviceGL20/digitalWriteAll',
+                request_serializer=GL20__pb2.GPIO.SerializeToString,
+                response_deserializer=GL20__pb2.GPIO.FromString,
                 )
 
 
 class serviceGL20Servicer(object):
     """Missing associated documentation comment in .proto file."""
 
-    def SquareRoot(self, request, context):
+    def digitalWriteToggle(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def GL20_digitalWriteToggleAll(self, request, context):
+    def digitalWriteToggleAll(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def digitalReadAll(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def digitalRead(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def digitalWrite(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def digitalWriteAll(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -44,15 +88,35 @@ class serviceGL20Servicer(object):
 
 def add_serviceGL20Servicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'SquareRoot': grpc.unary_unary_rpc_method_handler(
-                    servicer.SquareRoot,
-                    request_deserializer=GL20__pb2.Number.FromString,
-                    response_serializer=GL20__pb2.Number.SerializeToString,
+            'digitalWriteToggle': grpc.unary_unary_rpc_method_handler(
+                    servicer.digitalWriteToggle,
+                    request_deserializer=GL20__pb2.GPIO.FromString,
+                    response_serializer=GL20__pb2.GPIO.SerializeToString,
             ),
-            'GL20_digitalWriteToggleAll': grpc.unary_unary_rpc_method_handler(
-                    servicer.GL20_digitalWriteToggleAll,
-                    request_deserializer=GL20__pb2.noMessage.FromString,
-                    response_serializer=GL20__pb2.noMessage.SerializeToString,
+            'digitalWriteToggleAll': grpc.unary_unary_rpc_method_handler(
+                    servicer.digitalWriteToggleAll,
+                    request_deserializer=GL20__pb2.GPIO.FromString,
+                    response_serializer=GL20__pb2.GPIO.SerializeToString,
+            ),
+            'digitalReadAll': grpc.unary_unary_rpc_method_handler(
+                    servicer.digitalReadAll,
+                    request_deserializer=GL20__pb2.GPIO.FromString,
+                    response_serializer=GL20__pb2.GPIO.SerializeToString,
+            ),
+            'digitalRead': grpc.unary_unary_rpc_method_handler(
+                    servicer.digitalRead,
+                    request_deserializer=GL20__pb2.GPIO.FromString,
+                    response_serializer=GL20__pb2.GPIO.SerializeToString,
+            ),
+            'digitalWrite': grpc.unary_unary_rpc_method_handler(
+                    servicer.digitalWrite,
+                    request_deserializer=GL20__pb2.GPIO.FromString,
+                    response_serializer=GL20__pb2.GPIO.SerializeToString,
+            ),
+            'digitalWriteAll': grpc.unary_unary_rpc_method_handler(
+                    servicer.digitalWriteAll,
+                    request_deserializer=GL20__pb2.GPIO.FromString,
+                    response_serializer=GL20__pb2.GPIO.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -65,7 +129,7 @@ class serviceGL20(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
-    def SquareRoot(request,
+    def digitalWriteToggle(request,
             target,
             options=(),
             channel_credentials=None,
@@ -75,14 +139,14 @@ class serviceGL20(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/serviceGL20/SquareRoot',
-            GL20__pb2.Number.SerializeToString,
-            GL20__pb2.Number.FromString,
+        return grpc.experimental.unary_unary(request, target, '/serviceGL20/digitalWriteToggle',
+            GL20__pb2.GPIO.SerializeToString,
+            GL20__pb2.GPIO.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def GL20_digitalWriteToggleAll(request,
+    def digitalWriteToggleAll(request,
             target,
             options=(),
             channel_credentials=None,
@@ -92,8 +156,76 @@ class serviceGL20(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/serviceGL20/GL20_digitalWriteToggleAll',
-            GL20__pb2.noMessage.SerializeToString,
-            GL20__pb2.noMessage.FromString,
+        return grpc.experimental.unary_unary(request, target, '/serviceGL20/digitalWriteToggleAll',
+            GL20__pb2.GPIO.SerializeToString,
+            GL20__pb2.GPIO.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def digitalReadAll(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/serviceGL20/digitalReadAll',
+            GL20__pb2.GPIO.SerializeToString,
+            GL20__pb2.GPIO.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def digitalRead(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/serviceGL20/digitalRead',
+            GL20__pb2.GPIO.SerializeToString,
+            GL20__pb2.GPIO.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def digitalWrite(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/serviceGL20/digitalWrite',
+            GL20__pb2.GPIO.SerializeToString,
+            GL20__pb2.GPIO.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def digitalWriteAll(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/serviceGL20/digitalWriteAll',
+            GL20__pb2.GPIO.SerializeToString,
+            GL20__pb2.GPIO.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

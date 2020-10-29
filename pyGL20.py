@@ -24,6 +24,20 @@ class GPIO:
         with SMBus(self.__i2c_bus) as bus:
             bus.write_byte_data(self.__i2c_addr,self.__i2c_cmd_CONFIG, 0xfc)
 
+    def PIN(self, x):
+        """Input and return the PINx number
+        
+        Parameters
+        ----------
+        x : int
+            change from x => PINx
+        """
+        if x in range(0,8):
+            # only allow input 0 to 7
+            return (7-x)
+        else:
+            return -1
+
     def digitalWriteAll(self, value: int):
         """Assign both PIN6 and PIN7 simultaneously
         

@@ -1,6 +1,7 @@
 import grpc
 from concurrent import futures
 import time
+import logging
 
 # import the generated classes
 import GL20_pb2
@@ -9,41 +10,48 @@ import GL20_pb2_grpc
 # import the original calculator.py
 import serviceCode
 
-# create a class to define the server functions
-# derived from calculator_pb2_grpc.CalculatorServicer
-class serviceGL20Servicer(GL20_pb2_grpc.serviceGL20Servicer):
+class serviceGL20(GL20_pb2_grpc.serviceGL20Servicer):
 
-    # calculator.square_root is exposed here
-    # the request and response are of the data types
-    # generated as calculator_pb2.Number
-    def SquareRoot(self, request, context):
-        response = GL20_pb2.Number()
-        response.value = serviceCode.square_root(request.value)
+    def digitalWriteToggle(self, request, context):
+        response = GL20_pb2.GPIO()
+        print(request.PINx)
+        serviceCode.digitalWriteToggle(request.PINx)
+        return response
+    
+    def digitalWriteToggleAll(self, request, context):
+        response = GL20_pb2.GPIO()
+        serviceCode.digitalWriteToggleAll()
         return response
 
-    def GL20_digitalWriteToggleAll(self, request, context):
-        response = GL20_pb2.noMessage()
-        serviceCode.GL20_digitalWriteToggleAll()
+    def digitalReadAll(self, request, context):
+        response = GL20_pb2.GPIO()
+        response.value = serviceCode.digitalReadAll()
         return response
 
+    def digitalRead(self, request, context):
+        response = GL20_pb2.GPIO()
+        response.level = serviceCode.digitalRead(request.PINx)
+        return response
 
-# create a gRPC server
-server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
+    def digitalWriteAll(self, request, context):
+        response = GL20_pb2.GPIO()
+        serviceCode.digitalWriteAll(request.value)
+        return response
 
-# use the generated function `add_CalculatorServicer_to_server`
-# to add the defined class to the created server
-GL20_pb2_grpc.add_serviceGL20Servicer_to_server(
-        serviceGL20Servicer(), server)
+    def digitalWrite(self, request, context):
+        response = GL20_pb2.GPIO()
+        serviceCode.digitalWrite(request.PINx, request.level)
+        return response
 
-# listen on port 50051
-print('Starting server. Listening on port 50051.')
-server.add_insecure_port('[::]:50051')
-server.start()
+def serve():
+    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
+    GL20_pb2_grpc.add_serviceGL20Servicer_to_server(serviceGL20(), server)
+    print('Starting server. Listening on port 50051.')
+    server.add_insecure_port('[::]:50051')
+    server.start()
+    server.wait_for_termination()
 
-# since server.start() will not block,
-# a sleep-loop is added to keep alive
-try:
-    while True:
-        time.sleep(86400)
-except KeyboardInterrupt:
-    server.stop(0)
+
+if __name__ == '__main__':
+    logging.basicConfig()
+    serve()

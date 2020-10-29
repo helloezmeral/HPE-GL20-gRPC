@@ -19,24 +19,38 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\nGL20.proto\"\x17\n\x06Number\x12\r\n\x05value\x18\x01 \x01(\x02\"\x0b\n\tnoMessage2g\n\x0bserviceGL20\x12 \n\nSquareRoot\x12\x07.Number\x1a\x07.Number\"\x00\x12\x36\n\x1aGL20_digitalWriteToggleAll\x12\n.noMessage\x1a\n.noMessage\"\x00\x62\x06proto3'
+  serialized_pb=b'\n\nGL20.proto\"2\n\x04GPIO\x12\x0c\n\x04PINx\x18\x01 \x01(\x05\x12\r\n\x05value\x18\x02 \x01(\x05\x12\r\n\x05level\x18\x03 \x01(\x08\x32\xe0\x01\n\x0bserviceGL20\x12$\n\x12\x64igitalWriteToggle\x12\x05.GPIO\x1a\x05.GPIO\"\x00\x12\'\n\x15\x64igitalWriteToggleAll\x12\x05.GPIO\x1a\x05.GPIO\"\x00\x12 \n\x0e\x64igitalReadAll\x12\x05.GPIO\x1a\x05.GPIO\"\x00\x12\x1d\n\x0b\x64igitalRead\x12\x05.GPIO\x1a\x05.GPIO\"\x00\x12\x1e\n\x0c\x64igitalWrite\x12\x05.GPIO\x1a\x05.GPIO\"\x00\x12!\n\x0f\x64igitalWriteAll\x12\x05.GPIO\x1a\x05.GPIO\"\x00\x62\x06proto3'
 )
 
 
 
 
-_NUMBER = _descriptor.Descriptor(
-  name='Number',
-  full_name='Number',
+_GPIO = _descriptor.Descriptor(
+  name='GPIO',
+  full_name='GPIO',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='value', full_name='Number.value', index=0,
-      number=1, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
+      name='PINx', full_name='GPIO.PINx', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='value', full_name='GPIO.value', index=1,
+      number=2, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='level', full_name='GPIO.level', index=2,
+      number=3, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
@@ -53,51 +67,18 @@ _NUMBER = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=14,
-  serialized_end=37,
+  serialized_end=64,
 )
 
-
-_NOMESSAGE = _descriptor.Descriptor(
-  name='noMessage',
-  full_name='noMessage',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=39,
-  serialized_end=50,
-)
-
-DESCRIPTOR.message_types_by_name['Number'] = _NUMBER
-DESCRIPTOR.message_types_by_name['noMessage'] = _NOMESSAGE
+DESCRIPTOR.message_types_by_name['GPIO'] = _GPIO
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
-Number = _reflection.GeneratedProtocolMessageType('Number', (_message.Message,), {
-  'DESCRIPTOR' : _NUMBER,
+GPIO = _reflection.GeneratedProtocolMessageType('GPIO', (_message.Message,), {
+  'DESCRIPTOR' : _GPIO,
   '__module__' : 'GL20_pb2'
-  # @@protoc_insertion_point(class_scope:Number)
+  # @@protoc_insertion_point(class_scope:GPIO)
   })
-_sym_db.RegisterMessage(Number)
-
-noMessage = _reflection.GeneratedProtocolMessageType('noMessage', (_message.Message,), {
-  'DESCRIPTOR' : _NOMESSAGE,
-  '__module__' : 'GL20_pb2'
-  # @@protoc_insertion_point(class_scope:noMessage)
-  })
-_sym_db.RegisterMessage(noMessage)
+_sym_db.RegisterMessage(GPIO)
 
 
 
@@ -108,26 +89,66 @@ _SERVICEGL20 = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=52,
-  serialized_end=155,
+  serialized_start=67,
+  serialized_end=291,
   methods=[
   _descriptor.MethodDescriptor(
-    name='SquareRoot',
-    full_name='serviceGL20.SquareRoot',
+    name='digitalWriteToggle',
+    full_name='serviceGL20.digitalWriteToggle',
     index=0,
     containing_service=None,
-    input_type=_NUMBER,
-    output_type=_NUMBER,
+    input_type=_GPIO,
+    output_type=_GPIO,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
-    name='GL20_digitalWriteToggleAll',
-    full_name='serviceGL20.GL20_digitalWriteToggleAll',
+    name='digitalWriteToggleAll',
+    full_name='serviceGL20.digitalWriteToggleAll',
     index=1,
     containing_service=None,
-    input_type=_NOMESSAGE,
-    output_type=_NOMESSAGE,
+    input_type=_GPIO,
+    output_type=_GPIO,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='digitalReadAll',
+    full_name='serviceGL20.digitalReadAll',
+    index=2,
+    containing_service=None,
+    input_type=_GPIO,
+    output_type=_GPIO,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='digitalRead',
+    full_name='serviceGL20.digitalRead',
+    index=3,
+    containing_service=None,
+    input_type=_GPIO,
+    output_type=_GPIO,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='digitalWrite',
+    full_name='serviceGL20.digitalWrite',
+    index=4,
+    containing_service=None,
+    input_type=_GPIO,
+    output_type=_GPIO,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='digitalWriteAll',
+    full_name='serviceGL20.digitalWriteAll',
+    index=5,
+    containing_service=None,
+    input_type=_GPIO,
+    output_type=_GPIO,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
   ),
