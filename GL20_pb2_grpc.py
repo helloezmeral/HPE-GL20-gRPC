@@ -6,7 +6,8 @@ import GL20_pb2 as GL20__pb2
 
 
 class serviceGL20Stub(object):
-    """Missing associated documentation comment in .proto file."""
+    """serviceGL20 Create API for your to control the GPIO of GL20 
+    """
 
     def __init__(self, channel):
         """Constructor.
@@ -47,40 +48,54 @@ class serviceGL20Stub(object):
 
 
 class serviceGL20Servicer(object):
-    """Missing associated documentation comment in .proto file."""
+    """serviceGL20 Create API for your to control the GPIO of GL20 
+    """
 
     def digitalWriteToggle(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Toggle the OUTPUT port specific pin (PIN6, PIN7)
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def digitalWriteToggleAll(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Toggle the OUTPUT port pins (PIN6, PIN7)
+        ex: stub.digitalWriteToggleAll(GL20_pb2.GPIO())
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def digitalReadAll(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Read all pin and return in byte form
+
+        ex: bin(stub.digitalReadAll(GL20_pb2.GPIO()).value)
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def digitalRead(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Read a specific pin and return True if Logic HIGH
+        ex: stub.digitalRead(GL20_pb2.GPIO(PINx = 6)).level
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def digitalWrite(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Write a specific pin
+        ex: stub.digitalWrite(GL20_pb2.GPIO(PINx = 6, level = True))
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def digitalWriteAll(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Assign both PIN6 and PIN7 simultaneously
+
+        ex: stub.digitalWriteAll(GL20_pb2.GPIO(value = 2))
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
@@ -126,7 +141,8 @@ def add_serviceGL20Servicer_to_server(servicer, server):
 
  # This class is part of an EXPERIMENTAL API.
 class serviceGL20(object):
-    """Missing associated documentation comment in .proto file."""
+    """serviceGL20 Create API for your to control the GPIO of GL20 
+    """
 
     @staticmethod
     def digitalWriteToggle(request,
