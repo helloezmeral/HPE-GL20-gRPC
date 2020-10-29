@@ -105,6 +105,10 @@ Remember to register to the service and mark the response
         ex: stub.digitalWriteAll(GL20_pb2.GPIO(value = 2))
         """
 ```
+# Run the Server Code
 
+```py
+sudo python gRPC_server.py
+```
 
 
