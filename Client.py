@@ -4,13 +4,13 @@ import grpc
 import GL20_pb2
 import GL20_pb2_grpc
 
-import logging
-
 import time
+
+GL20_IP = "localhost:50051"
 
 # Blinking
 def run():
-    with grpc.insecure_channel('localhost:50051') as channel:
+    with grpc.insecure_channel(GL20_IP) as channel:
         stub = GL20_pb2_grpc.serviceGL20Stub(channel)
         stub.digitalWriteToggleAll(GL20_pb2.GPIO())
         print(stub.digitalRead(GL20_pb2.GPIO(PINx = 6)).level)
@@ -24,5 +24,4 @@ def run():
 
 
 if __name__ == '__main__':
-    logging.basicConfig()
     run()
