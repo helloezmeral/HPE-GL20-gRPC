@@ -11,3 +11,9 @@ sudo docker run -it --device /dev/i2c-0 -p 50051:50051 helloezmeral/gl20ms:lates
 ```
 
 - Note that the device may change (if the device change and you need to rebuild to image again)
+
+# OR Running using docker compose
+
+```sh
+docker-compose up
+```
