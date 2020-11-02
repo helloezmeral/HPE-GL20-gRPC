@@ -1,0 +1,8 @@
+version: "3.8"
+services:
+  gl20ms:
+    image: "helloezmeral/gl20ms:latest"
+    ports:
+        - "50051:50051"
+    devices: 
+        - "/dev/i2c-0"        
