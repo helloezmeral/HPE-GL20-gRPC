@@ -16,4 +16,6 @@ sudo docker run -it --device /dev/i2c-0 -p 50051:50051 helloezmeral/gl20ms:lates
 
 ```sh
 docker-compose up
+docker-compose up -d
+docker-compose down
 ```
