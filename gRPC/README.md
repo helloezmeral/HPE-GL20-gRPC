@@ -64,7 +64,11 @@ This serviceCode is for translating the client side calling to local calling
 
 ## Step 4: Run the gRPC server
 Remember to register to the service and mark the response
-
+```py
+sudo python gRPC_server.py
+```
+Client-side
+---
 ## Step 5: transfer the two pb.py file to the target client
 
 ## Step 6: Remote call the function with
@@ -80,35 +84,71 @@ Remember to register to the service and mark the response
 
     def digitalWriteToggleAll(self, request, context):
         """Toggle the OUTPUT port pins (PIN6, PIN7)
-        ex: stub.digitalWriteToggleAll(GL20_pb2.GPIO())
+            ex: stub.digitalWriteToggleAll(GL20_pb2.GPIO())
         """
 
     def digitalReadAll(self, request, context):
         """Read all pin and return in byte form
-
-        ex: bin(stub.digitalReadAll(GL20_pb2.GPIO()).value)
+            ex: bin(stub.digitalReadAll(GL20_pb2.GPIO()).value)
         """
 
     def digitalRead(self, request, context):
         """Read a specific pin and return True if Logic HIGH
-        ex: stub.digitalRead(GL20_pb2.GPIO(PINx = 6)).level
+            ex: stub.digitalRead(GL20_pb2.GPIO(PINx = 6)).level
         """
 
     def digitalWrite(self, request, context):
         """Write a specific pin
-        ex: stub.digitalWrite(GL20_pb2.GPIO(PINx = 6, level = True))
+            ex: stub.digitalWrite(GL20_pb2.GPIO(PINx = 6, level = True))
         """
 
     def digitalWriteAll(self, request, context):
         """Assign both PIN6 and PIN7 simultaneously
-
-        ex: stub.digitalWriteAll(GL20_pb2.GPIO(value = 2))
+            ex: stub.digitalWriteAll(GL20_pb2.GPIO(value = 2))
         """
 ```
-# Run the Server Code
 
-```py
-sudo python gRPC_server.py
+
+```proto3
+syntax = "proto3";
+
+message GPIO {
+    int32 PINx = 1;  // Logic pin on Gl20
+    int32 value = 2; // Value for return the whole port value and value to write the two output port
+    bool level = 3; // True represent logic High on GPIO
+}
+
+/* serviceGL20 Create API for your to control the GPIO of GL20 */
+service serviceGL20 {
+    //Toggle the OUTPUT port specific pin (PIN6, PIN7)
+    rpc digitalWriteToggle(GPIO) returns (GPIO) {}
+
+    //Toggle the OUTPUT port pins (PIN6, PIN7)
+    //      ex: stub.digitalWriteToggleAll(GL20_pb2.GPIO())
+    rpc digitalWriteToggleAll(GPIO) returns (GPIO) {}
+
+    /*Read all pin and return in byte form
+        
+        ex: bin(stub.digitalReadAll(GL20_pb2.GPIO()).value)*/
+    rpc digitalReadAll(GPIO) returns (GPIO) {}
+
+    // Read a specific pin and return True if Logic HIGH
+    //      ex: stub.digitalRead(GL20_pb2.GPIO(PINx = 6)).level
+    rpc digitalRead(GPIO) returns (GPIO) {}
+
+    // Write a specific pin
+    //      ex: stub.digitalWrite(GL20_pb2.GPIO(PINx = 6, level = True))
+    rpc digitalWrite(GPIO) returns (GPIO) {}
+
+    /* Assign both PIN6 and PIN7 simultaneously
+        
+        ex: stub.digitalWriteAll(GL20_pb2.GPIO(value = 2))
+         */
+    rpc digitalWriteAll(GPIO) returns (GPIO) {}
+}
+
+// Command
+// python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. *.proto
 ```
 
 

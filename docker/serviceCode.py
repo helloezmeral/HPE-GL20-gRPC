@@ -1,10 +1,8 @@
 import math
 import pyGL20
 
+# change this manually according to i2c-detect
 IO = pyGL20.GPIO(0)
-
-# def GL20_digitalWriteToggleAll():
-#   IO.digitalWriteToggleAll()
 
 def digitalWriteToggle(pin):
   if pin in range(6,8):
