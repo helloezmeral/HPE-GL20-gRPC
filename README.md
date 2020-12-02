@@ -1,5 +1,4 @@
 # HPE-GL20-gRPC
 
-This repository shows how to deploy a gRPC service calling GPIO
-
-You can deploy it with docker compose.
+gRPC folder holds all the file required for you to write gRPC service starting from .proto file.
+docker folder holds files required for deploying service with docker. Also docker-compose file
